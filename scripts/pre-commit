@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Find all staged Jupyter notebooks
+STAGED_NOTEBOOKS=$(git diff --cached --name-only --diff-filter=ACM | grep '\.ipynb$')
+
+# Exit if there are no staged notebooks
+if [ -z "$STAGED_NOTEBOOKS" ]; then
+    exit 0
+fi
+
+# Strip output from all staged notebooks
+for notebook in $STAGED_NOTEBOOKS; do
+    nbstripout "$notebook"
+    git add "$notebook"
+done
+
+exit 0

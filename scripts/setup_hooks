@@ -1,0 +1,9 @@
+#!/bin/bash
+
+MAIN_DIR=$(git rev-parse --show-toplevel)
+HOOKS_DIR=$(git rev-parse --show-toplevel)/.git/hooks
+
+cp $MAIN_DIR/scripts/pre-commit $HOOKS_DIR/pre-commit
+chmod +x $HOOKS_DIR/pre-commit
+
+echo "Check to make sure 'pre-commit' hook installed."
